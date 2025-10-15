@@ -5,11 +5,21 @@ const connectDB = require("./database/db");
 const cors = require("cors");
 
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 connectDB();
 
-app.use(cors());
+const allowedOrigins = (process.env.CORS_ALLOWED_ORIGINS || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+app.use(
+  cors({
+    origin: allowedOrigins.length > 0 ? allowedOrigins : true,
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 const authRoutes = require("./routes/authenticationRoute");
@@ -27,3 +37,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
 });
+
