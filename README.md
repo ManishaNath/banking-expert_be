@@ -51,6 +51,33 @@ npm install
 npm run dev
 ```
 
+backend/   ← Express + MongoDB API
+frontend/  ← React single page app
+```
+
+Each project keeps its own dependencies, environment variables, and deployment pipeline so you can host them separately.
+
+### 🛠️ Backend setup
+1. Install dependencies:
+   ```bash
+   cd backend
+   npm install
+   ```
+2. Copy the example environment file and fill in the secrets:
+   ```bash
+   cp .env.example .env
+   ```
+   | Variable | Description |
+   | --- | --- |
+   | `PORT` | (Optional) HTTP port for the API. Defaults to `8000`. |
+   | `MONGO_URI` | MongoDB connection string (Atlas or self-hosted). |
+   | `JWT_SECRET` | Random string used to sign JSON Web Tokens. |
+   | `MORALIS_API_KEY` | Moralis Web3 API key for wallet data. |
+   | `CORS_ALLOWED_ORIGINS` | (Optional) Comma separated list of allowed origins for CORS, e.g. `http://localhost:3000
+3. Start the server:
+   ```bash
+   npm run dev   # uses nodemon for live reload
+
 ## 📡 API Endpoints
 
 | Method | Endpoint      | Description                           |
@@ -62,5 +89,6 @@ npm run dev
 
 ## 📄 License
 MIT License
+
 
 
